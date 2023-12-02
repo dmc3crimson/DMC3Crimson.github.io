@@ -1,10 +1,315 @@
 <!DOCTYPE html>
-<html>
-    <link rel="stylesheet" href="index.css"> 
+<html lang="en" dir="ltr">
     <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Russo+One">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="index.css">
         <title>Crimson Official</title>
     </head>
     <body>
-        <img alt="fk" src="trishpng.png" class="rotate" style="height: 70vh;" />
+        <script>
+            function convertRemToPixels(rem) {    
+                return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+            }
+            
+            async function navigateTo(navID) {
+                const headerHeight = document.getElementById("navbar").offsetHeight;
+                const navElement = document.getElementById(navID);
+
+                if(navElement == null)
+                return;
+
+                const offset = navElement.offsetTop;
+                const scrollTo = offset - headerHeight;
+                window.scrollTo({ top: scrollTo });
+            }
+
+            function isNavigatedToHeadOrFoot(elem) {
+                const scrollTop = (window.pageYOffset || document.scrollTop)  - (document.clientTop || 0);
+                const scrollBot = scrollTop + window.innerHeight;
+
+                const elemTop = elem.offsetTop;
+                const elemBot = elemTop + elem.offsetHeight;
+            
+                const navedToTop = elemTop > scrollTop && elemTop < scrollBot;
+                const navedToBot = elemBot > scrollTop && elemBot < scrollBot; 
+
+                return navedToTop || navedToBot;
+            }
+
+            function isNavigatedToMiddle(elem) {
+                // Top of the document + the height of the navbar on top + 1 pixel to offset it by so if the element's offset matches scroll's top it still counts
+                const scrollTop = (window.pageYOffset || document.scrollTop)  - (document.clientTop || 0) + document.getElementById("navbar").offsetHeight + 1;
+
+                const elemTop = elem.offsetTop;
+
+                return scrollTop > elemTop;
+            }
+
+            function highlightNavButton(buttonID) {
+                console.log(buttonID)
+                const listOfButtonIDs = ["button-nav-about", "button-nav-faq", "button-nav-github", "button-nav-github",
+                                         "button-nav-patchnotes", "button-nav-upcoming"];
+                
+                for (navButtonID of listOfButtonIDs){
+                    document.getElementById(navButtonID).style = "";
+                }
+
+                if(buttonID != null) {
+                    document.getElementById(buttonID).style = "color: #DE1C4C;";
+                }
+            }
+
+            window.onscroll = async () => {
+                if(isNavigatedToMiddle(document.getElementById("section-about"))){
+                    highlightNavButton("button-nav-about");
+                }
+                if(isNavigatedToMiddle(document.getElementById("section-faq"))){
+                    highlightNavButton("button-nav-faq");
+                }
+
+                //if(isNavigatedTo(document.getElementById("section-github"))){
+                //    highlightNavButton("button-nav-github");
+                //}
+
+                if(isNavigatedToMiddle(document.getElementById("section-patchnotes"))){
+                    highlightNavButton("button-nav-patchnotes");
+                }
+
+                //if(isNavigatedTo(document.getElementById("section-upcoming"))){
+                //    highlightNavButton("button-nav-upcoming");
+                //}
+            }
+
+            window.onload = function() {
+                const headerHeight = document.getElementById("navbar").offsetHeight;
+                const navElement = document.querySelector(":target");
+                
+                if(navElement == null)
+                    return;
+
+                const offset = navElement.offsetTop;
+                const scrollTo = offset - headerHeight;
+                window.scrollTo({ top: scrollTo });
+            }
+        </script>
+
+        <nav id="navbar" class="navbar">
+            <div id="nav-container">
+                <div id="logos">
+                    <span style="font-family: 'Russo One'; font-size: 1.5rem;">C•Team</span>
+                    <img alt="" src="assets/imgs/CrimsonHeader.png" draggable="false" style="width: 12rem;" />
+                </div>
+
+                <ul id="buttons">
+                    <li>
+                        <button id="button-nav-about" onclick="navigateTo('section-about')">About</button>
+                    </li>
+                    
+                    <li>
+                        <button id="button-nav-faq" onclick="navigateTo('section-faq')">FAQ</button>
+                    </li>
+                    
+                    <li>
+                        <button id="button-nav-github" >GITHUB</button>
+                    </li>
+                    
+                    <li>
+                        <button id="button-nav-patchnotes" onclick="navigateTo('section-patchnotes')">PATCH NOTES</button>
+                    </li>
+
+                    <li>
+                        <button id="button-nav-upcoming" onclick="navigateTo('section-upcoming')">UPCOMING</button>
+                    </li>
+                </ul>
+
+                <div id="redirects">
+                    <a href="https://github.com/berthrage/Devil-May-Cry-3-Crimson/releases" target="_blank" draggable="false">
+                        <button class="btn-redirect-download">
+                            <span>DOWNLOAD</span>
+                            <div style="width: 100%; margin-top: -0.25rem;">
+                                <span style="display: flex; justify-content: end; font-size: 0.6rem;">Ver. 1.2</span>
+                            </div>
+                        </button>
+                    </a>
+
+                    <a href="https://www.patreon.com/miaberth" target="_blank" draggable="false">
+                        <button class="btn-redirect-patreon">
+                            <span>PATREON</span>
+                            <div style="width: 100%">
+                                <span style="display: flex; justify-content: center; color: red; width: 100%; font-size: 0.65rem; margin-top: -0.3rem;">Sponsor this project</span>
+                            </div>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="header">
+            <div class="header-video-container">
+                <div class="header-video-bg-extender-container">
+                    <video autoplay loop muted class="header-video-bg-extender">
+                        <source src="assets/videos/header-bg.mp4" type="video/mp4" />
+                    </video>
+                    <div class="header-vid-externder-overlay"></div>
+                </div>
+
+                <video autoplay loop muted class="header-video">
+                    <source src="assets/videos/header-bg.mp4" type="video/mp4" />
+                </video>
+                
+                <div class="header-vid-overlay"></div>
+            </div>
+            
+            <div class="header-content">
+                <img draggable="false" id="header-crimson-main-logo" alt="" src="assets/imgs/CrimsonLogo.png" />
+                <button id="btn-playnow">PLAY NOW</button>
+            </div>
+            
+            <div class="header-spacer"></div>
+        </div>
+
+        <div>
+            <div id="section-about" class="section-about">
+                <p>
+                  <h1 class="title">About</h1>
+                </p>
+
+                <p>
+                    <span class="bold">DMC3 Crimson</span> is an improvement mod for <span class="bold">Devil May Cry 3 (HD Collection)</span>, made with the goal of overhauling the gameplay and bringing some much appreciated quality-of-life changes. Crimson is based on DDMK, so if you’re familiar with that mod, some of the features present may already be familiar to you.
+                </p>
+
+                <p style="margin-top: 1.5rem;">
+                    That said, we are looking forward to bringing all-new ways to kick demon ass and look good while doing so.
+                    Some of the new features includes:
+                </p>
+
+                <ul style="margin-top: 2rem;">
+                    <li><span class="bold crimson-highlighted">Inertia</span>, for powering up your aerial moves and ensuring no two aerial combos look the same.</li>
+                    <li><span class="bold crimson-highlighted">Guardflying.</span></li>
+                    <li>An all new <span class="bold crimson-highlighted">modernized HUD.</span></li>
+                    <li>New <span class="bold crimson-highlighted">Visual Effects</span> (Style Switching, Delayed Combos...).</li>
+                    <li>New <span class="bold crimson-highlighted">Sound Effects</span> (Style Rank Announcer, DT Ready Indicator...).</li>
+                    <li>Switch Version-like <span class="bold crimson-highlighted">Weapon Wheel</span> (swap your weapons also by flicking the Right Stick).</li>
+                    <li>An <span class="bold crimson-highlighted">expanded moveset</span> for Dante, with more tools for combos.</li>
+                    <li>More <span class="bold crimson-highlighted">intuitive inputs</span> (Dance Macabre on Lock On + Forward instead of Back?).</li>
+                    <li><span class="bold crimson-highlighted">Bugfixes.</span></li>
+                    <li>and more...</li>
+                </ul>
+
+                <div style="width: 40rem;">
+                    <img src="assets/imgs/CrimsonFirstPage.png" alt="WhoOoOops!" style="width: 100%;" />
+                    <hr class="divider">
+                </div>
+
+                <p style="margin-top: 2rem;">
+                    Navigating its list of features can be as simple and intuitive or as modular as you want. Simply hit the <span class="bold">DELETE</span> key while in-game (or <span class="bold">Left Stick + Left Shoulder + Right</span> Shoulder buttons on the controller) to bring up a neat interface with all the options available. 
+                </p>
+
+                <p style="margin-top: 2.5rem;">
+                    We made sure to make the game as customizable as possible, so you can either stick with the Default Game Modes, or tailor your DMC3 experience exactly as you want.
+                </p>
+            </div>
+                        
+            <div class="page-divider" style="padding-bottom: 5rem;">
+                <hr style="width: 85%" />
+            </div>
+
+            <div id="section-faq" class="section-faq">
+                <h1 class="title">FAQ</h1>
+                
+                <h1 class="title" style="font-size: 1.5rem;">Installation</h1>
+                
+                <div style="padding-right: 20rem;">
+                    <p>
+                        To install Crimson, you need to have Devil May Cry HD Collection installed on your computer through Steam.
+                        We will not support pirated copies of the game, and we don’t endorse piracy.
+                        Once it’s done, download the latest DMC3 Crimson version linked <button class="button-inline">here</button>. 
+                    </p>
+
+                    <p style="margin-top: 2rem; margin-bottom: 0rem;">
+                        When it’s downloaded, <span class="bold">extract all the contents of the .zip into DMC HD Collection’s root folder</span>.
+                    </p>
+
+                    <p style="margin-top: 0;">
+                        For Windows, this root folder is usually located at <span class="bold" style="font-style: italic;">“&lt;Steam’s Root Folder&gt;\steamapps\common\Devil May Cry HD Collection”</span>.
+                    </p>
+
+                    <div style="display: flex; width: 100%; justify-content: center; align-items: center;">
+                        <div style="width: 40rem;">
+                            <img src="assets/imgs/DMC3Location.png" alt="WhoOoOops!" style="width: 100%;" />
+                            <hr class="divider">
+                        </div>
+                    </div>
+
+                    <p>
+                        And from there, you’re ready to go! Just run the game from Steam, and game on. 
+                    </p>
+                </div>
+
+                <h1 class="title" style="font-size: 1.5rem; margin-top: 3rem">Graphics/Resolution Troubleshooting</h1>
+
+                <p>
+                    If you’re having trouble with the game’s graphics and resolution, try messing with the DMC HD Collection Launcher Settings:
+                </p>
+
+                <div style="display: flex; width: 100%; justify-content: center; align-items: center; gap: 1rem;">
+                    <div style="width: 40rem;">
+                        <img src="assets/imgs/LauncherSettings.png" alt="WhoOoOops!" style="width: 100%;" />
+                        <hr class="divider">
+                    </div>
+
+                    <div style="width: 40rem;">
+                        <img src="assets/imgs/LauncherSettingsOtions.png" alt="WhoOoOops!" style="width: 100%;" />
+                        <hr class="divider">
+                    </div>
+                </div>
+
+                <div style="padding-right: 20rem;">
+                    <p>
+                        A <span class="bold">known issue</span> with this launcher is not being able to go above 1920x1080 when setting your resolution.
+                        However you can manage to set resolutions above it by editing one of the game’s save files located at
+                        <span class="bold" style="font-style: italic;">“&lt;Steam’s Root Folder&gt;\userdata\&lt;user-id&gt;\631510”</span>.
+                        From there simply open <span class="bold"></span>options.sav</span> with your Notepad of choice and edit your resolution in “<span class="bold">width</span>” and “<span class="bold">height</span>”:
+                    </p>
+                </div>
+
+                <div style="display: flex; width: 100%; justify-content: center; align-items: center; margin-top: 2rem;">
+                    <div style="width: 65rem;">
+                        <img src="assets/imgs/Options.dat.png" alt="WhoOoOops!" style="width: 100%;" />
+                        <hr class="divider">
+                    </div>
+                </div>
+
+                <p>Alternatively, you can simply use the following tool: <button class="button-inline">https://github.com/Lyall/DMCHDFix</button></p>
+
+                <div style="display: flex; flex-direction: column; width: 100%; justify-content: center; align-items: center; margin-top: 2rem;">
+                    <p>Be sure to also check out the Graphical Settings in Crimson’s GUI under <span class="bold" style="font-style: italic;">Options -> System</span> for more:</p>
+                    <div style="width: 45rem;">
+                        <img src="assets/imgs/CrimsonFirstPage.png" alt="WhoOoOops!" style="width: 100%;" />
+                        <hr class="divider">
+                    </div>
+                </div>
+
+                <div id="faq-question" style="margin-bottom: 3rem;">
+                    <h1 class="title" style="font-size: 1.5rem; margin-top: 2rem;">Frequently Asked Questions</h1>
+                </div>
+            </div>
+
+            <div class="page-divider" style="background-color: #35282B; padding-bottom: 5rem;">
+                <hr style="width: 85%" />
+            </div>
+
+            <div id="section-patchnotes" class="section-patchnotes">
+                <div style="display: flex; align-items: flex-end; gap: 0.5rem;">
+                    <h1 class="title">Patch Notes</h1>
+                    <div style="display: flex; margin-bottom: 1rem; gap: 0.5rem;">
+                        <h1 class="title" style="color: white; font-size: 1.875rem; font-weight: 400;">Ver.</h1>
+                        <h1 id="selected-patchnotes-version" class="title" style="color: white; font-size: 1.875rem; font-weight: 400;">1.0</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
