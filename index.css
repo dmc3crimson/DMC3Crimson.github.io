@@ -274,7 +274,7 @@ h1.title {
     justify-content: center;
     gap: 2rem;
     width: 100%;
-    height: var(--header-height);
+    max-height: var(--header-height);
 }
 
 .header-content #header-crimson-main-logo {
@@ -303,10 +303,6 @@ h1.title {
 
 .header-content #btn-playnow:active {
     background-color: #b6163e;
-}
-
-.header-spacer {
-    height: calc(var(--header-height) + var(--header-video-bottom-margin));
 }
 
 .double-imgs {
@@ -466,7 +462,7 @@ h1.title {
     }
 
     .header-content {
-        margin-top: 0.25rem;
+        margin-top: 0.8rem;
         justify-content: start;
     }
 }

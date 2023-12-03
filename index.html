@@ -49,7 +49,6 @@
             }
 
             function highlightNavButton(buttonID) {
-                console.log(buttonID)
                 const listOfButtonIDs = ["button-nav-about", "button-nav-faq", "button-nav-github", "button-nav-github",
                                          "button-nav-patchnotes", "button-nav-upcoming"];
                 
@@ -85,16 +84,22 @@
                 //}
             }
 
-            window.onload = function() {
-                const headerHeight = document.getElementById("navbar").offsetHeight;
-                const navElement = document.querySelector(":target");
+            async function adjustHeaderSpacer() {
+                const vidContainerHeight = document.getElementById("header-video-container").offsetHeight;
                 
-                if(navElement == null)
-                    return;
+                var spacerElem = document.getElementById("header-spacer");
 
-                const offset = navElement.offsetTop;
-                const scrollTo = offset - headerHeight;
-                window.scrollTo({ top: scrollTo });
+                console.log(spacerElem.style.height)
+
+                spacerElem.style.height = vidContainerHeight + "px";
+            }
+
+            window.onload = () => {
+                adjustHeaderSpacer();
+            }
+
+            window.onresize = () => {
+                adjustHeaderSpacer();
             }
         </script>
 
@@ -107,7 +112,7 @@
 
                 <ul id="buttons">
                     <li>
-                        <button id="button-nav-about" onclick="navigateTo('section-about')">About</button>
+                        <button id="button-nav-about" onclick="navigateTo('section-about')">ABOUT</button>
                     </li>
                     
                     <li>
@@ -150,7 +155,7 @@
         </nav>
 
         <div class="header">
-            <div class="header-video-container">
+            <div id="header-video-container" class="header-video-container">
                 <div class="header-video-bg-extender-container">
                     <video autoplay loop muted class="header-video-bg-extender">
                         <source src="assets/videos/header-bg.mp4" type="video/mp4" />
@@ -169,8 +174,8 @@
                 <img draggable="false" id="header-crimson-main-logo" alt="" src="assets/imgs/CrimsonLogo.png" />
                 <button id="btn-playnow">PLAY NOW</button>
             </div>
-            
-            <div class="header-spacer"></div>
+
+            <div id="header-spacer" class="header-spacer"></div>
         </div>
 
         <div>
