@@ -35,6 +35,10 @@ body,html {
     overflow: overlay;
 }
 
+a {
+    text-decoration: none;
+}
+
 p {
     line-height: 141.8%;
 }
