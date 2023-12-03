@@ -63,6 +63,8 @@
             }
 
             window.onscroll = async () => {
+                highlightNavButton(null);
+
                 if(isNavigatedToMiddle(document.getElementById("section-about"))){
                     highlightNavButton("button-nav-about");
                 }
@@ -199,9 +201,11 @@
                     <li>and more...</li>
                 </ul>
 
-                <div style="width: 40rem;">
-                    <img src="assets/imgs/CrimsonFirstPage.png" alt="WhoOoOops!" style="width: 100%;" />
-                    <hr class="divider">
+                <div style="width: 100%;">
+                    <div style="max-width: 40rem;">
+                        <img src="assets/imgs/CrimsonFirstPage.png" alt="WhoOoOops!" style="width: 100%;" />
+                        <hr class="divider">
+                    </div>
                 </div>
 
                 <p style="margin-top: 2rem;">
@@ -258,13 +262,13 @@
                     If you’re having trouble with the game’s graphics and resolution, try messing with the DMC HD Collection Launcher Settings:
                 </p>
 
-                <div style="display: flex; width: 100%; justify-content: center; align-items: center; gap: 1rem;">
-                    <div style="width: 40rem;">
+                <div class="double-imgs">
+                    <div style="max-width: 40rem;">
                         <img src="assets/imgs/LauncherSettings.png" alt="WhoOoOops!" style="width: 100%;" />
                         <hr class="divider">
                     </div>
 
-                    <div style="width: 40rem;">
+                    <div style="max-width: 40rem;">
                         <img src="assets/imgs/LauncherSettingsOtions.png" alt="WhoOoOops!" style="width: 100%;" />
                         <hr class="divider">
                     </div>
@@ -295,9 +299,11 @@
 
                 <div style="display: flex; flex-direction: column; width: 100%; justify-content: center; align-items: center; margin-top: 2rem;">
                     <p>Be sure to also check out the Graphical Settings in Crimson’s GUI under <span class="bold" style="font-style: italic;">Options -> System</span> for more:</p>
-                    <div style="width: 45rem;">
-                        <img src="assets/imgs/CrimsonFirstPage.png" alt="WhoOoOops!" style="width: 100%;" />
-                        <hr class="divider">
+                    <div style="display:flex; justify-content: center; width: 100%;">
+                        <div style="max-width: 45rem;">
+                            <img src="assets/imgs/CrimsonFirstPage.png" alt="WhoOoOops!" style="width: 100%;" />
+                            <hr class="divider">
+                        </div>
                     </div>
                 </div>
 
@@ -312,10 +318,10 @@
 
             <div id="section-patchnotes" class="section-patchnotes">
                 <div style="display: flex; align-items: flex-end; gap: 0.5rem;">
-                    <h1 class="title">Patch Notes</h1>
-                    <div style="display: flex; margin-bottom: 1rem; gap: 0.5rem;">
-                        <h1 class="title" style="color: white; font-size: 1.875rem; font-weight: 400;">Ver.</h1>
-                        <h1 id="selected-patchnotes-version" class="title" style="color: white; font-size: 1.875rem; font-weight: 400;">1.0</h1>
+                    <h1 class="patchnotes-title">Patch Notes</h1>
+                    <div class="patchnotes-title-box">
+                        <h1 class="patchnotes-version-txt">Ver.</h1>
+                        <h1 id="selected-patchnotes-version" class="patchnotes-version-txt">1.0</h1>
                     </div>
                 </div>
             </div>

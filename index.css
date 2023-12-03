@@ -305,10 +305,20 @@ h1.title {
     height: calc(var(--header-height) + var(--header-video-bottom-margin));
 }
 
+.double-imgs {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
 .section-about {
     width: 70vw;
     margin: 0;
     padding: var(--page-content-section-padding);
+    overflow: hidden;
 }
 
 .section-faq {
@@ -316,10 +326,32 @@ h1.title {
     background-color: #35282B;
     margin: 0;
     padding: var(--page-content-section-padding);
+    overflow: hidden;
 }
 
 .faq-std-div {
     padding-right: 20rem;
+}
+
+.patchnotes-title-box {
+    display: flex;
+    margin-bottom: 1rem;
+    gap: 0.5rem;
+}
+
+.patchnotes-title {
+    margin: 0;
+    font-family: "Russo One";
+    color: #DE1C4C;
+    font-size: 5rem;
+}
+
+.patchnotes-version-txt {
+    margin: 0;
+    font-family: "Russo One";
+    color: white;
+    font-size: 1.875rem;
+    font-weight: 400;
 }
 
 .section-patchnotes {
@@ -327,6 +359,7 @@ h1.title {
     background-color: black;
     margin: 0;
     padding: var(--page-content-section-padding);
+    overflow: hidden;
 }
 
 @media (max-width: 89.25rem) {
@@ -369,6 +402,10 @@ h1.title {
     .faq-std-div {
         padding-right: 1rem;
     }
+
+    .double-imgs {
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 68.5rem) {
@@ -382,6 +419,19 @@ h1.title {
 
     .faq-std-div {
         padding-right: 0;
+    }
+
+    .patchnotes-title {
+        font-size: 1.5rem;
+    }
+
+    .patchnotes-version-txt {
+        font-size: 0.8rem;
+    }
+    
+    .patchnotes-title-box {
+        margin-bottom: 0.3rem;
+        gap: 0.25rem;
     }
 }
 
