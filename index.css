@@ -33,12 +33,12 @@ body,html {
     margin: 0;
     padding: 0;
     overflow: overlay;
-    scrollbar-width: thin;
-    scrollbar-color: #DE1C4C black;
 }
 
 * {
     box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: #DE1C4C black;
 }
 
 h1.title {
