@@ -35,6 +35,10 @@ body,html {
     overflow: overlay;
 }
 
+p {
+    line-height: 141.8%;
+}
+
 * {
     box-sizing: border-box;
     scrollbar-width: thin;
