@@ -94,7 +94,36 @@
                 spacerElem.style.height = vidContainerHeight + "px";
             }
 
+            var headerCanvas = {
+                video: null,
+                canvas: null,
+                canvasContext: null,
+            }
+
+            async function updateCanvas() {
+                headerCanvas.context.drawImage(headerCanvas.video, 0, 0);
+                headerCanvas.context.filter = "blur(5px)";
+            }
+
+            async function videoLoop() {
+                if (headerCanvas.video && !headerCanvas.video.paused && !headerCanvas.video.ended) {
+                    updateCanvas();
+                    setTimeout(videoLoop, 1000 / 30);
+                }
+            }          
+
             window.onload = () => {
+                headerCanvas.video = document.getElementById('header-video');
+                headerCanvas.canvas = document.getElementById('header-video-bg-extender-canvas');
+
+                // Set canvas size to fit the video
+                headerCanvas.canvas.width = headerCanvas.video.videoWidth;
+                headerCanvas.canvas.height = headerCanvas.video.videoHeight; 
+
+                headerCanvas.context = headerCanvas.canvas.getContext('2d');
+                videoLoop();
+
+
                 adjustHeaderSpacer();
             }
 
@@ -157,13 +186,12 @@
         <div class="header">
             <div id="header-video-container" class="header-video-container">
                 <div class="header-video-bg-extender-container">
-                    <video autoplay loop muted class="header-video-bg-extender">
-                        <source src="assets/videos/header-bg.mp4" type="video/mp4" />
-                    </video>
-                    <div class="header-vid-externder-overlay"></div>
+                    <canvas id="header-video-bg-extender-canvas" class="header-video-bg-extender"></canvas>
+
+                    <div class="header-vid-extender-overlay"></div>
                 </div>
 
-                <video autoplay loop muted class="header-video">
+                <video id="header-video" autoplay loop muted class="header-video">
                     <source src="assets/videos/header-bg.mp4" type="video/mp4" />
                 </video>
                 
