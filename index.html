@@ -100,7 +100,7 @@
                 canvasContext: null,
             }
 
-            async function videoSyncInterval() {
+            function videoSyncInterval() {
                 if (headerCanvas.video && !headerCanvas.video.paused && !headerCanvas.video.ended) {
                     headerCanvas.canvasContext.drawImage(headerCanvas.video, 0, 0);
                     headerCanvas.canvasContext.filter = "blur(5px)";
