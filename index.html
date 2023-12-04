@@ -102,8 +102,8 @@
 
             async function videoSyncInterval() {
                 if (headerCanvas.video && !headerCanvas.video.paused && !headerCanvas.video.ended) {
-                    headerCanvas.context.drawImage(headerCanvas.video, 0, 0);
-                    headerCanvas.context.filter = "blur(5px)";
+                    headerCanvas.canvasContext.drawImage(headerCanvas.video, 0, 0);
+                    headerCanvas.canvasContext.filter = "blur(5px)";
                 }
             }          
 
@@ -115,7 +115,7 @@
                 headerCanvas.canvas.width = headerCanvas.video.videoWidth;
                 headerCanvas.canvas.height = headerCanvas.video.videoHeight; 
 
-                headerCanvas.context = headerCanvas.canvas.getContext('2d');
+                headerCanvas.canvasContext = headerCanvas.canvas.getContext('2d');
                 setInterval(videoSyncInterval, 1000 / 24);
 
 
